@@ -39,10 +39,12 @@ async def on_message(message):
 
     elif (message.author != client.user):
         t = translator.detect(message.content)
+        if t.confidence < 0.7:
+           # not enough confidence, probably garbage text
+           return
         d = translator.translate(message.content)
         print(t)
         print(d)
-
 
         if (message.content[0:2] != '<:'):
             if ('en' != t.lang):
