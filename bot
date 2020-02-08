@@ -43,6 +43,11 @@ async def on_message(message):
            # not enough confidence, probably garbage text
            return
         d = translator.translate(message.content)
+        if d.text.strip() == message.content.strip():
+           # Skip sending same message as translation
+           # Example 'hm' -> 'hm'
+           return
+
         print(t)
         print(d)
 
